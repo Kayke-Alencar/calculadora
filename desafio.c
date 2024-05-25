@@ -1,81 +1,76 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<locale.h> 
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
 
+// Variáveis para as operações
+float resultado;
+char operacao;
+float n1;
+float n2;
 
-//esta é uma branch (usando-funcoes)
-//teste
+// Função para obter os valores
+void get() {
+    printf("Digite o primeiro valor: ");
+    scanf("%f", &n1);
+    printf("Digite o segundo valor: ");
+    scanf("%f", &n2);
+}
 
-
-int main(){
+int main() {
     setlocale(LC_ALL, "portuguese");
 
-    //variaveis para o while funcionar.
+    // Variáveis para o loop
     int executar = 1;
     char repetir = 'S';
 
-    //variaveis para as operacoes.
-    float resultado;
-    char operacao;
-    float n1;
-    float n2;
-    
-    while (executar > 0){
-        printf("Digite o caracter correspondente a operação desejada:\n(/ para divisao)\n(* para multiplicacao)\n(+ para soma)\n(- para subtracao)\n: ");
-        scanf("%c", &operacao);
+    while (executar) {
+        printf("Digite o caractere correspondente à operação desejada:\n(/ para divisão)\n(* para multiplicação)\n(+ para soma)\n(- para subtração)\n: ");
+        scanf(" %c", &operacao); // O espaço antes de %c consome qualquer caractere residual no buffer
 
-         
-        switch ( operacao){
+        switch (operacao) {
+            case '/':
+                get();
+                if (n2 != 0) {
+                    resultado = n1 / n2;
+                    printf("O resultado de %.2f dividido por %.2f é %.2f\n", n1, n2, resultado);
+                } else {
+                    printf("Erro: Divisão por zero não é permitida.\n");
+                }
+                break;
 
-            //divisao
-            case'/':printf("Digite o valor a ser dividido \n:");
-            scanf("%f", &n1);
-            printf("Digite o segundo valor \n:");
-            scanf("%f", &n2);
-            resultado = n1/n2;
-            printf("O resultado de %.2f dividido por %.2f e %.2f \n", n1, n2, resultado); //%.2 serve para mostrar apenas dois numeros dps da virgula.
-            break;
- 
-            //multiplicação
-            case'*':printf("Digite o valor a ser multiplicado \n:");
-            scanf("%f", &n1);
-            printf("Digite o segundo valor \n:");
-            scanf("%f", &n2);
-            resultado = n1*n2;
-            printf("O resultado de %.2f multiplicado por %.2f e %.2f \n", n1, n2, resultado);
-            break;
+            case '*':
+                get();
+                resultado = n1 * n2;
+                printf("O resultado de %.2f multiplicado por %.2f é %.2f\n", n1, n2, resultado);
+                break;
 
-            //soma
-            case'+':printf("Digite o valor a ser somado \n");
-            scanf("%f", &n1);
-            printf("Digite o segundo valor \n:");
-            scanf("%f", &n2);
-            resultado = n1+n2;
-            printf("O resultado de %.2f somado por %.2f e %.2f \n", n1, n2, resultado);
-            break;
+            case '+':
+                get();
+                resultado = n1 + n2;
+                printf("O resultado de %.2f somado por %.2f é %.2f\n", n1, n2, resultado);
+                break;
 
-            //subtracao
-            case'-':printf("Digite o valor a ser subtraido \n");
-            scanf("%f", &n1);
-            printf("Digite o segundo valor \n:");
-            scanf("%f", &n2);
-            resultado = n1-n2;
-            printf("O resultado de %.2f subtraido por %.2f e %.2f \n", n1, n2, resultado);
-            break;
+            case '-':
+                get();
+                resultado = n1 - n2;
+                printf("O resultado de %.2f subtraído por %.2f é %.2f\n", n1, n2, resultado);
+                break;
 
-            default: printf("Operador nao indentificado \n");;
+            default:
+                printf("Operador não identificado\n");
+                break;
         }
 
-        
-
         printf("Deseja continuar? (S/N) ");
-        scanf(" %c", &repetir);
-        if(repetir == 'n' || repetir == 'N'){ // || serve para fazer mais uma condicao (neste caso tanto em maiusculo quanto em minusculo).
+        scanf(" %c", &repetir); // O espaço antes de %c consome qualquer caractere residual no buffer
+
+        if (repetir == 'n' || repetir == 'N') {
             executar = 0;
-            printf("----FIMM!----  :)");
-        } else {
-            executar = 1;
-            getchar(); // para limpar informacoes armazenadas anteriormente noteclado.
-        }   
+            printf("----FIM!----  :)\n");
+        } else if (repetir != 's' && repetir != 'S') {
+            printf("Caractere não identificado\n");
+        }
     }
+
+    return 0;
 }
