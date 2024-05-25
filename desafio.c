@@ -3,6 +3,10 @@
 #include<locale.h> 
 
 
+//branch-de-treino
+
+
+
 int main(){
     setlocale(LC_ALL, "portuguese");
 
@@ -31,7 +35,7 @@ int main(){
             resultado = n1/n2;
             printf("O resultado de %.2f dividido por %.2f e %.2f \n", n1, n2, resultado); //%.2 serve para mostrar apenas dois numeros dps da virgula.
             break;
-
+ 
             //multiplicação
             case'*':printf("Digite o valor a ser multiplicado \n:");
             scanf("%f", &n1);
